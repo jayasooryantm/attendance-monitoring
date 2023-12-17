@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <h2>Employee Data File</h2>
+        <p>Upload excel file that contains employee data (Remove already existing employe data, employee id is
+            unique)</p>
+        <br>
+        {{ form.file }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+{% endblock %}

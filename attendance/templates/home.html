@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .clock-btn {
+    text-align: center;
+    width: 80%;
+    box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 100px;
+  }
+</style>
+<br>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <h1 class="col-md-3 text-center">Today's Records</h1>
+    <div class="col-md-3 text-center">
+      <a href="{% url 'clock_in' %}" class="btn btn-success btn-lg clock-btn"> Clock In </a>
+    </div>
+    <div class="col-md-3 text-center">
+      <a href="{% url 'clock_out' %}" class="btn btn-danger btn-lg clock-btn"> Clock Out </a>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="container">
+  <table class="table table-striped table-hover table-bordered" id="records_table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Employee ID</th>
+        <th class="col-2" scope="col">Name</th>
+        <th class="col-2" scope="col">Designation</th>
+        <th class="col-2" scope="col">Clocked Time</th>
+        <th scope="col">In/Out</th>
+        <th class="col-2" scope="col">Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in records %}
+      <tr>
+        <td scope="row">{{ record.em_id }}</td>
+        <td scope="row">{{ record.name }}</td>
+        <td scope="row">{{ record.role }}</td>
+        <td scope="row">{{ record.clocked_time }}</td>
+        <td scope="row">
+          {% if record.clocking_type == True %}
+          Clock In
+          {% else %}
+          Clock Out
+          {% endif %}
+        </td>
+        <td scope="row">{{ record.remark }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

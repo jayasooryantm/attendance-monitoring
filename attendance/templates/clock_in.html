@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+
+</style>
+
+<div class="container-fluid">
+    <h1>{{ header }}</h1>
+</div>
+<br>
+<form method="post" action="{% url 'clock_in' %}" class="row">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="em_id" class="form-label">Employee ID</label>
+        <input type="text" id="em_id" class="form-control" value={{form.em_id.value}} readonly />
+        <input type="hidden" name="{{ form.em_id.name }}" value="{{ form.em_id.value }}">
+
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Employee Name</label>
+        {{form.name}}
+    </div>
+    <div class="mb-3">
+        <label for="role" class="form-label">Designation</label>
+        {{form.role}}
+    </div>
+    <div class="mb-3">
+        <label for="remark" class="form-label">Remark</label>
+        {{form.remark}}
+    </div>
+    <div class="col-md-2">
+        <button type="submit" value="in" class="btn btn-success">Clock In</button>
+    </div>
+</form>
+
+{% endblock %}

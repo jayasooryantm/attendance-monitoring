@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+    <h1>List of Employees</h1>
+</div>
+
+<br>
+
+<div class="container">
+    <table class="table table-striped table-hover table-bordered" id="employees_table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Employee ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Designation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td scope="row">{{ employee.em_id }}</td>
+                <td scope="row">{{ employee.name }}</td>
+                <td scope="row">{{ employee.role }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
